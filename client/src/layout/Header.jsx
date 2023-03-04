@@ -1,4 +1,6 @@
+import { useState } from "react";
 import styled from "styled-components";
+import AddSong from "../Components/AddSong";
 const Container = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -12,11 +14,23 @@ const Button = styled.button`
   font-size: 14px;
   weight: normal;
   color: white;
+  margin-top: 16px;
 `;
 export default function Header() {
+  const [addSong, setAddSong] = useState(false);
+
+  const handleCancel = () => {
+    setAddSong(false);
+  };
+
+  const handleAdd = () => {
+    setAddSong(true);
+  };
   return (
     <Container>
-      <Button>Add Song</Button>
+      <Button onClick={handleAdd}>Add Song</Button>
+
+      <AddSong visible={addSong} handleCancel={handleCancel} />
     </Container>
   );
 }

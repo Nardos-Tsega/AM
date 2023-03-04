@@ -1,5 +1,9 @@
+import Song from "../Components/SongCard";
 import Layout from "../layout/Layout";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getSongsFetch } from "../features/songs/songsSlice";
 
 const Title = styled.h1`
   color: #e66465;
@@ -13,10 +17,21 @@ const Body = styled.div`
 `;
 
 export default function Songs() {
+  const songs = useSelector((state) => state.songs.songs);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getSongsFetch());
+  }, [dispatch]);
+
   return (
     <Layout>
-      <Title>Albums</Title>
-      <Body>Body Text</Body>
+      <Title>Songs</Title>
+      <Body>
+        {songs.map((song) => (
+          <Song song={song} />
+        ))}
+      </Body>
     </Layout>
   );
 }
