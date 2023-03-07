@@ -1,5 +1,5 @@
 const express = require("express");
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 9000;
 const musicRouter = require("./routes/MusicRoutes");
 const connectDB = require("./config/db");
 const dotenv = require("dotenv").config();
@@ -9,8 +9,7 @@ const app = express();
 
 const corsOptions = {
   origin: "*",
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
+  credentials: true, //acces
 };
 
 app.use(cors(corsOptions));
